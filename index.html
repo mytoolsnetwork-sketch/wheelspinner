@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wheel Spinner — Free Online Random Picker</title>
+<meta name="description" content="Free online wheel spinner and random picker. Add your options, spin the wheel and let fate decide. Perfect for teachers, parties, giveaways and decisions.">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;background:#f8f8f6;color:#1a1a1a;min-height:100vh}
+header{background:#fff;border-bottom:1px solid #e0e0d8;padding:14px 24px;display:flex;align-items:center;gap:12px}
+header h1{font-size:20px;font-weight:500}
+header span{font-size:13px;color:#888;margin-left:auto}
+.container{max-width:900px;margin:0 auto;padding:2rem 1rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start}
+@media(max-width:600px){.container{grid-template-columns:1fr}}
+.canvas-wrap{display:flex;flex-direction:column;align-items:center;gap:1rem}
+.pointer{font-size:32px;transform:rotate(90deg);margin-bottom:-10px;line-height:1}
+canvas{border-radius:50%;box-shadow:0 2px 16px rgba(0,0,0,0.08)}
+.spin-btn{width:100%;padding:12px;font-size:16px;font-weight:500;border-radius:10px;background:#1D9E75;border:none;cursor:pointer;color:#fff;transition:background 0.15s}
+.spin-btn:hover{background:#0F6E56}
+.spin-btn:disabled{opacity:0.5;cursor:not-allowed}
+.result-box{text-align:center;padding:12px;border-radius:10px;background:#fff;border:1px solid #e0e0d8;font-size:16px;font-weight:500;min-height:46px;display:flex;align-items:center;justify-content:center}
+.panel{display:flex;flex-direction:column;gap:14px;background:#fff;border-radius:12px;border:1px solid #e0e0d8;padding:1.25rem}
+.panel-title{font-size:12px;font-weight:500;color:#888;text-transform:uppercase;letter-spacing:0.05em}
+.presets{display:flex;flex-wrap:wrap;gap:6px}
+.preset-btn{font-size:12px;padding:5px 12px;border-radius:8px;border:1px solid #e0e0d8;background:#f8f8f6;color:#444;cursor:pointer}
+.preset-btn:hover{background:#e0e0d8}
+.input-row{display:flex;gap:8px}
+.input-row input{flex:1;font-size:14px;padding:9px 12px;border-radius:8px;border:1px solid #e0e0d8;background:#f8f8f6}
+.add-btn{padding:9px 16px;border-radius:8px;border:1px solid #e0e0d8;background:#fff;cursor:pointer;font-size:14px}
+.add-btn:hover{background:#f8f8f6}
+.items-list{display:flex;flex-direction:column;gap:6px;max-height:240px;overflow-y:auto}
+.item{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:8px;background:#f8f8f6;font-size:13px}
+.dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.item-label{flex:1}
+.del-btn{border:none;background:none;cursor:pointer;color:#aaa;font-size:18px;line-height:1}
+.del-btn:hover{color:#e24b4a}
+.history{font-size:12px;color:#888}
+.history b{color:#444}
+.seo-text{max-width:900px;margin:0 auto 2rem;padding:0 1rem;font-size:14px;color:#888;line-height:1.7}
+footer{text-align:center;padding:2rem;font-size:12px;color:#aaa;border-top:1px solid #e0e0d8;margin-top:2rem}
+</style>
+</head>
+<body>
+<header>
+  <h1>&#127744; Wheel Spinner</h1>
+  <span>Free random picker</span>
+</header>
+
+<div class="container">
+  <div class="canvas-wrap">
+    <div class="pointer">&#9658;</div>
+    <canvas id="wc" width="280" height="280"></canvas>
+    <button class="spin-btn" id="spinBtn" onclick="spinWheel()">Spin the wheel</button>
+    <div class="result-box" id="result">Add items and spin!</div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-title">Quick presets</div>
+    <div class="presets">
+      <button class="preset-btn" onclick="loadPreset('food')">&#127829; What to eat</button>
+      <button class="preset-btn" onclick="loadPreset('class')">&#128104;&#8205;&#127979; Class picker</button>
+      <button class="preset-btn" onclick="loadPreset('yesno')">&#10067; Yes or No</button>
+      <button class="preset-btn" onclick="loadPreset('weekend')">&#127774; Weekend</button>
+      <button class="preset-btn" onclick="loadPreset('travel')">&#9992;&#65039; Travel</button>
+    </div>
+
+    <div class="panel-title">Add your items</div>
+    <div class="input-row">
+      <input type="text" id="newItem" placeholder="Type an option..." onkeydown="if(event.key==='Enter')addItem()"/>
+      <button class="add-btn" onclick="addItem()">Add</button>
+    </div>
+    <div class="items-list" id="itemsList"></div>
+    <div class="history" id="historyEl" style="display:none">Last: <b id="historyText"></b></div>
+  </div>
+</div>
+
+<div class="seo-text">
+  <p>Wheel Spinner is a free online random picker. Add your options, spin the wheel and get an instant random result. Perfect for teachers picking students, deciding what to eat, party games, giveaways, and any decision you want to leave to chance.</p>
+</div>
+
+<footer>&#169; 2026 WheelSpinner.info &mdash; Free online wheel spinner</footer>
+
+<script>
+const COLORS=['#1D9E75','#534AB7','#D85A30','#185FA5','#BA7517','#993556','#639922','#E24B4A','#0F6E56','#3C3489'];
+const PRESETS={
+  food:['Pizza','Sushi','Burger','Pasta','Salad','Tacos','Ramen','Curry'],
+  class:['Alice','Bob','Charlie','Diana','Eve','Frank','Grace','Henry'],
+  yesno:['Yes','No','Maybe','Absolutely','No way'],
+  weekend:['Cinema','Hiking','Stay home','Museum','Park','Road trip'],
+  travel:['Paris','Tokyo','New York','Barcelona','Bali','London']
+};
+let items=[{label:'Option 1'},{label:'Option 2'},{label:'Option 3'}];
+let spinning=false;
+let angle=0;
+let history=[];
+function getColor(i){return COLORS[i%COLORS.length]}
+function renderItems(){
+  const el=document.getElementById('itemsList');
+  el.innerHTML='';
+  items.forEach((it,i)=>{
+    const d=document.createElement('div');
+    d.className='item';
+    d.innerHTML=`<div class="dot" style="background:${getColor(i)}"></div><div class="item-label">${it.label}</div><button class="del-btn" onclick="removeItem(${i})">&times;</button>`;
+    el.appendChild(d);
+  });
+  drawWheel();
+}
+function addItem(){
+  const inp=document.getElementById('newItem');
+  const val=inp.value.trim();
+  if(!val)return;
+  items.push({label:val});
+  inp.value='';
+  renderItems();
+}
+function removeItem(i){items.splice(i,1);renderItems();}
+function loadPreset(key){items=PRESETS[key].map(l=>({label:l}));renderItems();}
+function drawWheel(highlight=-1){
+  const canvas=document.getElementById('wc');
+  const ctx=canvas.getContext('2d');
+  const cx=140,cy=140,r=130;
+  ctx.clearRect(0,0,280,280);
+  if(items.length===0)return;
+  const arc=(Math.PI*2)/items.length;
+  items.forEach((it,i)=>{
+    const start=angle+i*arc-Math.PI/2;
+    const end=start+arc;
+    ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,r,start,end);ctx.closePath();
+    ctx.fillStyle=highlight===i?'#FAC775':getColor(i);ctx.fill();
+    ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.stroke();
+    ctx.save();ctx.translate(cx,cy);ctx.rotate(start+arc/2);
+    ctx.textAlign='right';ctx.fillStyle='#fff';ctx.font='500 13px system-ui,sans-serif';
+    const label=it.label.length>10?it.label.substring(0,10)+'…':it.label;
+    ctx.fillText(label,r-8,5);ctx.restore();
+  });
+  ctx.beginPath();ctx.arc(cx,cy,18,0,Math.PI*2);
+  ctx.fillStyle='#fff';ctx.fill();ctx.strokeStyle='#e0e0d8';ctx.lineWidth=1.5;ctx.stroke();
+}
+function spinWheel(){
+  if(spinning||items.length<2){
+    if(items.length<2)document.getElementById('result').textContent='Add at least 2 items!';
+    return;
+  }
+  spinning=true;
+  document.getElementById('spinBtn').disabled=true;
+  document.getElementById('result').textContent='Spinning...';
+  const extraSpins=5+Math.floor(Math.random()*5);
+  const targetAngle=angle+Math.PI*2*extraSpins+Math.random()*Math.PI*2;
+  const duration=3000+Math.random()*1000;
+  const start=performance.now();
+  const startAngle=angle;
+  function animate(now){
+    const elapsed=now-start;
+    const progress=Math.min(elapsed/duration,1);
+    const ease=1-Math.pow(1-progress,4);
+    angle=startAngle+(targetAngle-startAngle)*ease;
+    const arc=(Math.PI*2)/items.length;
+    const normalised=(((-angle+Math.PI/2)%(Math.PI*2))+(Math.PI*2))%(Math.PI*2);
+    const winner=Math.floor(normalised/arc)%items.length;
+    drawWheel(progress>0.85?winner:-1);
+    if(progress<1){requestAnimationFrame(animate);}
+    else{
+      spinning=false;
+      document.getElementById('spinBtn').disabled=false;
+      const w=items[winner].label;
+      document.getElementById('result').textContent='🎉 '+w+'!';
+      history.unshift(w);if(history.length>5)history.pop();
+      const hel=document.getElementById('historyEl');
+      hel.style.display='block';
+      document.getElementById('historyText').textContent=history.join(' · ');
+    }
+  }
+  requestAnimationFrame(animate);
+}
+renderItems();
+</script>
+</body>
+</html>
