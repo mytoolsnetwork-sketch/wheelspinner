@@ -176,5 +176,17 @@ function spinWheel(){
 }
 renderItems();
 </script>
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1a1a1a;color:#fff;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;z-index:9999;flex-wrap:wrap">
+  <p style="font-size:13px;margin:0">We use cookies to personalise content and ads. <a href="/privacy.html" style="color:#1D9E75">Learn more</a></p>
+  <div style="display:flex;gap:8px">
+    <button onclick="acceptCookies()" style="padding:8px 20px;background:#1D9E75;border:none;border-radius:6px;color:#fff;cursor:pointer;font-size:13px">Accept</button>
+    <button onclick="declineCookies()" style="padding:8px 20px;background:transparent;border:1px solid #555;border-radius:6px;color:#fff;cursor:pointer;font-size:13px">Decline</button>
+  </div>
+</div>
+<script>
+if(!localStorage.getItem('cookieConsent')){document.getElementById('cookie-banner').style.display='flex'}
+function acceptCookies(){localStorage.setItem('cookieConsent','accepted');document.getElementById('cookie-banner').style.display='none'}
+function declineCookies(){localStorage.setItem('cookieConsent','declined');document.getElementById('cookie-banner').style.display='none'}
+</script>
 </body>
 </html>
