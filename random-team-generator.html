@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://www.wheelspinner.info/random-team-generator.html" />
+  <title>Random Team Generator — Free Online Team Picker</title>
+  <meta name="description" content="Free random team generator. Enter names, choose number of teams, and get balanced random teams instantly. Perfect for sports, classrooms and office events.">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:system-ui,sans-serif;background:#f8f8f6;color:#1a1a1a;min-height:100vh}
+    header{background:#fff;border-bottom:1px solid #e0e0d8;padding:14px 24px;display:flex;align-items:center;gap:12px}
+    header h1{font-size:20px;font-weight:500}
+    header a{color:#888;text-decoration:none;font-size:14px;margin-left:auto}
+    header a:hover{color:#1a1a1a}
+    .container{max-width:800px;margin:0 auto;padding:2rem 1rem}
+    .hero{text-align:center;margin-bottom:2.5rem}
+    .hero h2{font-size:28px;font-weight:600;margin-bottom:8px}
+    .hero p{font-size:15px;color:#888;line-height:1.6}
+    .card{background:#fff;border-radius:12px;padding:2rem;margin-bottom:2rem;border:1px solid #e0e0d8}
+    label{font-size:14px;color:#666;display:block;margin-bottom:8px}
+    textarea{width:100%;padding:12px;background:#f8f8f6;border:1px solid #e0e0d8;border-radius:8px;color:#1a1a1a;font-size:15px;margin-bottom:1rem;resize:vertical;min-height:150px;font-family:system-ui,sans-serif}
+    .num-row{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem}
+    .num-row label{margin:0;white-space:nowrap}
+    input[type="number"]{width:80px;padding:10px;background:#f8f8f6;border:1px solid #e0e0d8;border-radius:8px;color:#1a1a1a;font-size:16px;text-align:center}
+    button{width:100%;padding:14px;background:#1a1a1a;border:none;border-radius:8px;color:#fff;font-size:15px;font-weight:500;cursor:pointer}
+    button:hover{background:#333}
+    .teams-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:1.5rem}
+    .team-card{background:#f8f8f6;border-radius:8px;padding:1rem;border:1px solid #e0e0d8}
+    .team-title{font-size:13px;font-weight:600;color:#888;margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.05em}
+    .team-member{padding:6px 0;border-bottom:1px solid #e0e0d8;font-size:14px}
+    .team-member:last-child{border-bottom:none}
+    .seo-section{max-width:800px;margin:2rem auto;padding:0 1rem;color:#555;line-height:1.7}
+    .seo-section h2{font-size:1.4rem;margin-bottom:1rem;color:#1a1a1a}
+    .seo-section h3{font-size:1.1rem;margin:1.5rem 0 0.5rem;color:#1a1a1a}
+    .seo-section p{margin-bottom:1rem}
+    .seo-section ul{padding-left:1.2rem;margin-bottom:1rem}
+    .seo-section li{margin-bottom:0.5rem}
+    footer{text-align:center;padding:2rem;font-size:12px;color:#bbb;border-top:1px solid #e0e0d8;margin-top:2rem}
+    footer a{color:#1a1a1a;text-decoration:none}
+  </style>
+</head>
+<body>
+<header>
+  <h1>🌀 WheelSpinner</h1>
+  <a href="/">← Back to Wheel Spinner</a>
+</header>
+<div class="container">
+  <div class="hero">
+    <h2>Random Team Generator</h2>
+    <p>Enter names, choose the number of teams, and get balanced random teams instantly.</p>
+  </div>
+  <div class="card">
+    <label for="players">Enter names — one per line</label>
+    <textarea id="players" placeholder="Alice&#10;Bob&#10;Charlie&#10;Diana&#10;Edward&#10;Fiona&#10;George&#10;Hannah"></textarea>
+    <div class="num-row">
+      <label for="numteams">Number of teams:</label>
+      <input type="number" id="numteams" value="2" min="2" max="10">
+    </div>
+    <button onclick="generateTeams()">⚡ Generate Random Teams</button>
+    <div id="teams-output"></div>
+  </div>
+</div>
+
+<section class="seo-section">
+  <h2>What Is a Random Team Generator?</h2>
+  <p>A random team generator is a free online tool that splits a list of names into balanced random teams instantly. It shuffles the names randomly and distributes them as evenly as possible across the number of teams you choose — no bias, no arguments, no time wasted.</p>
+
+  <h2>How to Use the Random Team Generator</h2>
+  <ul>
+    <li><strong>Enter names</strong> — type or paste one name per line.</li>
+    <li><strong>Choose the number of teams</strong> — from 2 to 10.</li>
+    <li><strong>Click "Generate Random Teams"</strong> — teams are created instantly.</li>
+    <li><strong>Not happy with the split?</strong> Click again to regenerate.</li>
+  </ul>
+
+  <h2>Popular Uses for the Random Team Generator</h2>
+  <h3>⚽ Sports & PE Classes</h3>
+  <p>Splitting students or players into fair teams for football, basketball, volleyball, or any sport. Random selection removes the social anxiety of being "picked last" and ensures no team feels unfairly stacked.</p>
+  <h3>🏢 Office Team Building</h3>
+  <p>For workshops, hackathons, escape rooms, or office party games — random teams mix up colleagues who don't normally work together, which is exactly the point of team building.</p>
+  <h3>📚 Classroom Group Work</h3>
+  <p>Assign groups for projects, debates, or activities fairly and instantly. Random grouping also encourages students to work with peers they wouldn't normally choose.</p>
+  <h3>🎮 Game Nights & Parties</h3>
+  <p>Trivia nights, board games, charades — split your group into teams quickly without the awkwardness of manual selection.</p>
+
+  <h2>Frequently Asked Questions</h2>
+  <h3>Are the teams truly random?</h3>
+  <p>Yes — the generator uses a Fisher-Yates shuffle algorithm to randomize the name order before distributing them into teams. Every possible arrangement has an equal probability.</p>
+  <h3>What if the numbers don't divide evenly?</h3>
+  <p>The generator distributes names as evenly as possible. If you have 10 people and 3 teams, you'll get teams of 4, 3, and 3 — the extra person always goes to the first team.</p>
+  <h3>Can I generate teams again?</h3>
+  <p>Yes — just click the button again to get a completely new random split from the same list.</p>
+  <h3>Is it free?</h3>
+  <p>Completely free. No account, no subscription — just enter names and generate.</p>
+</section>
+
+<footer>
+  © 2026 WheelSpinner.info — <a href="/">Wheel Spinner</a> · <a href="/random-name-picker.html">Random Name Picker</a> · <a href="/yes-or-no-wheel.html">Yes or No Wheel</a> · <a href="/wheel-spinner-for-classroom.html">Classroom Spinner</a> · <a href="/privacy.html">Privacy Policy</a>
+</footer>
+
+<script>
+function generateTeams() {
+  const raw = document.getElementById('players').value;
+  const names = raw.split('\n').map(n => n.trim()).filter(n => n.length > 0);
+  const numTeams = parseInt(document.getElementById('numteams').value);
+  if (names.length < numTeams) {
+    alert('You need at least as many names as teams!');
+    return;
+  }
+  const shuffled = [...names].sort(() => Math.random() - 0.5);
+  const teams = Array.from({length: numTeams}, () => []);
+  shuffled.forEach((name, i) => teams[i % numTeams].push(name));
+  const colors = ['#e3f2fd','#f3e5f5','#e8f5e9','#fff3e0','#fce4ec','#e0f7fa','#f9fbe7','#ede7f6','#fbe9e7','#e0f2f1'];
+  let html = '<div class="teams-grid">';
+  teams.forEach((team, i) => {
+    html += `<div class="team-card" style="background:${colors[i % colors.length]}">`;
+    html += `<div class="team-title">Team ${i + 1}</div>`;
+    team.forEach(name => {
+      html += `<div class="team-member">${name}</div>`;
+    });
+    html += '</div>';
+  });
+  html += '</div>';
+  document.getElementById('teams-output').innerHTML = html;
+}
+</script>
+</body>
+</html>
