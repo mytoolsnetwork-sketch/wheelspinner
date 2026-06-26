@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://www.wheelspinner.info/what-to-eat-wheel.html" />
+  <title>What to Eat Wheel — Random Food Picker & Meal Decider</title>
+  <meta name="description" content="Can't decide what to eat? Spin the what to eat wheel for a random meal idea. Free food picker wheel with presets for lunch, dinner and takeaway.">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:system-ui,sans-serif;background:#f8f8f6;color:#1a1a1a;min-height:100vh}
+    header{background:#fff;border-bottom:1px solid #e0e0d8;padding:14px 24px;display:flex;align-items:center;gap:12px}
+    header h1{font-size:20px;font-weight:500}
+    header a{color:#888;text-decoration:none;font-size:14px;margin-left:auto}
+    header a:hover{color:#1a1a1a}
+    .container{max-width:800px;margin:0 auto;padding:2rem 1rem}
+    .hero{text-align:center;margin-bottom:2.5rem}
+    .hero h2{font-size:28px;font-weight:600;margin-bottom:8px}
+    .hero p{font-size:15px;color:#888;line-height:1.6}
+    .card{background:#fff;border-radius:12px;padding:2rem;margin-bottom:2rem;border:1px solid #e0e0d8}
+    .presets{display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem;margin-bottom:1.5rem}
+    .preset-btn{padding:10px;background:#f8f8f6;border:2px solid #e0e0d8;border-radius:8px;color:#1a1a1a;cursor:pointer;font-size:13px;text-align:center;transition:all 0.2s}
+    .preset-btn:hover{border-color:#1a1a1a}
+    label{font-size:14px;color:#666;display:block;margin-bottom:8px}
+    textarea{width:100%;padding:12px;background:#f8f8f6;border:1px solid #e0e0d8;border-radius:8px;color:#1a1a1a;font-size:15px;margin-bottom:1rem;resize:vertical;min-height:120px;font-family:system-ui,sans-serif}
+    button.main-btn{width:100%;padding:14px;background:#1a1a1a;border:none;border-radius:8px;color:#fff;font-size:16px;font-weight:500;cursor:pointer}
+    button.main-btn:hover{background:#333}
+    .result-box{background:#f8f8f6;border-radius:8px;padding:2rem;margin-top:1.5rem;display:none;text-align:center;border:1px solid #e0e0d8}
+    .result-emoji{font-size:3rem;margin-bottom:0.5rem}
+    .result-food{font-size:1.8rem;font-weight:700;color:#1a1a1a;margin-bottom:0.5rem}
+    .result-note{font-size:13px;color:#888;margin-bottom:1rem}
+    .spin-again{padding:10px 20px;background:#fff;border:1px solid #e0e0d8;border-radius:8px;color:#1a1a1a;font-size:14px;cursor:pointer}
+    .spin-again:hover{background:#e0e0d8}
+    .seo-section{max-width:800px;margin:2rem auto;padding:0 1rem;color:#555;line-height:1.7}
+    .seo-section h2{font-size:1.4rem;margin-bottom:1rem;color:#1a1a1a}
+    .seo-section h3{font-size:1.1rem;margin:1.5rem 0 0.5rem;color:#1a1a1a}
+    .seo-section p{margin-bottom:1rem}
+    .seo-section ul{padding-left:1.2rem;margin-bottom:1rem}
+    .seo-section li{margin-bottom:0.5rem}
+    footer{text-align:center;padding:2rem;font-size:12px;color:#bbb;border-top:1px solid #e0e0d8;margin-top:2rem}
+    footer a{color:#1a1a1a;text-decoration:none}
+  </style>
+</head>
+<body>
+<header>
+  <h1>🌀 WheelSpinner</h1>
+  <a href="/">← Back to Wheel Spinner</a>
+</header>
+<div class="container">
+  <div class="hero">
+    <h2>What to Eat Wheel 🍕</h2>
+    <p>Can't decide what to eat? Let the wheel choose for you. Spin for an instant meal idea!</p>
+  </div>
+  <div class="card">
+    <label>Quick presets</label>
+    <div class="presets">
+      <div class="preset-btn" onclick="loadPreset('lunch')">🥗 Lunch ideas</div>
+      <div class="preset-btn" onclick="loadPreset('dinner')">🍽️ Dinner ideas</div>
+      <div class="preset-btn" onclick="loadPreset('takeaway')">🥡 Takeaway</div>
+      <div class="preset-btn" onclick="loadPreset('healthy')">🥦 Healthy</div>
+      <div class="preset-btn" onclick="loadPreset('comfort')">🍜 Comfort food</div>
+      <div class="preset-btn" onclick="loadPreset('quick')">⚡ Quick meals</div>
+    </div>
+    <label for="foods">Or add your own options — one per line</label>
+    <textarea id="foods" placeholder="Pizza&#10;Sushi&#10;Pasta&#10;Tacos&#10;Salad&#10;Burgers"></textarea>
+    <button class="main-btn" onclick="spinFood()">🎲 Spin the Food Wheel!</button>
+    <div class="result-box" id="result">
+      <div class="result-emoji" id="result-emoji">🍽️</div>
+      <div class="result-food" id="result-food"></div>
+      <div class="result-note">That's what you're having! 😄</div>
+      <button class="spin-again" onclick="spinFood()">Spin Again</button>
+    </div>
+  </div>
+</div>
+
+<section class="seo-section">
+  <h2>Can't Decide What to Eat? Let the Wheel Decide!</h2>
+  <p>The "what to eat" struggle is real. You open the fridge, stare blankly, close it, open it again — nothing has changed. Or you ask your partner and get "I don't know, what do you want?" for the fifth time. The what to eat wheel cuts through the indecision instantly with a random, fun, and completely commitment-free answer.</p>
+
+  <h2>How to Use the What to Eat Wheel</h2>
+  <ul>
+    <li><strong>Choose a preset</strong> — lunch, dinner, takeaway, healthy, comfort food, or quick meals.</li>
+    <li><strong>Or add your own options</strong> — type your favourite restaurants, cuisines, or specific dishes.</li>
+    <li><strong>Spin the wheel</strong> — get an instant random meal suggestion.</li>
+    <li><strong>Don't like it?</strong> Spin again until something sounds good.</li>
+  </ul>
+
+  <h2>Why We Struggle to Decide What to Eat</h2>
+  <p>Decision fatigue is real — by the time lunch or dinner rolls around, most people have already made hundreds of small decisions during the day. The mental energy required to evaluate food options feels disproportionate to the stakes, which is why "I don't mind, you choose" is such a common response. A random wheel bypasses the decision entirely.</p>
+
+  <h2>Meal Ideas by Category</h2>
+  <h3>🥗 Quick Lunch Ideas</h3>
+  <p>Salad, sandwich, wrap, soup, leftovers, grain bowl, omelette, avocado toast, noodles, or a simple stir-fry — all fast, all satisfying options for a weekday lunch spin.</p>
+  <h3>🍽️ Dinner Ideas</h3>
+  <p>Pasta, pizza, tacos, curry, roast chicken, steak, fish, burgers, risotto, or Thai food — add your favourites and let the wheel plan your evening.</p>
+  <h3>🥡 Takeaway Options</h3>
+  <p>Chinese, Indian, Japanese, Mexican, Italian, Thai, Greek, Korean, American, or Lebanese — spin the wheel when you're ordering in and can't agree on a cuisine.</h3>
+
+  <h2>Frequently Asked Questions</h2>
+  <h3>What should I eat for dinner tonight?</h3>
+  <p>Add your favourite dinner options to the wheel and spin! If you're short on inspiration, try the Dinner preset which includes a variety of popular meal ideas to get you started.</p>
+  <h3>Can I add my own restaurants or dishes?</h3>
+  <p>Yes — just type your options into the text box, one per line. Add your favourite local restaurants, specific dishes you have ingredients for, or cuisines you're in the mood for.</p>
+  <h3>What if I don't like the result?</h3>
+  <p>Spin again! There are no rules. Keep spinning until something sounds appealing — or notice that your resistance to a result tells you something about what you actually want.</p>
+  <h3>Is it free?</h3>
+  <p>Completely free. No sign-up, no subscription — just spin and eat.</p>
+</section>
+
+<footer>
+  © 2026 WheelSpinner.info — <a href="/">Wheel Spinner</a> · <a href="/random-name-picker.html">Random Name Picker</a> · <a href="/yes-or-no-wheel.html">Yes or No Wheel</a> · <a href="/wheel-spinner-for-classroom.html">Classroom Spinner</a> · <a href="/random-team-generator.html">Team Generator</a> · <a href="/privacy.html">Privacy Policy</a>
+</footer>
+
+<script>
+const presets = {
+  lunch: ['Salad','Sandwich','Wrap','Soup','Grain bowl','Omelette','Avocado toast','Noodles','Leftovers','Stir-fry'],
+  dinner: ['Pasta','Pizza','Tacos','Curry','Roast chicken','Steak','Fish & chips','Burgers','Risotto','Thai food'],
+  takeaway: ['Chinese','Indian','Japanese','Mexican','Italian','Thai','Greek','Korean','American','Lebanese'],
+  healthy: ['Salad bowl','Grilled salmon','Veggie stir-fry','Quinoa bowl','Smoothie bowl','Lentil soup','Grilled chicken','Avocado toast','Buddha bowl','Zucchini noodles'],
+  comfort: ['Mac & cheese','Pizza','Fried chicken','Pasta carbonara','Grilled cheese','Beef stew','Mashed potatoes','Ramen','Lasagne','Fish & chips'],
+  quick: ['Eggs on toast','Instant noodles','Quesadilla','Fried rice','Pita & hummus','Cereal','Frozen pizza','Sandwich','Soup','Omelette']
+};
+const emojis = {'Pizza':'🍕','Sushi':'🍣','Pasta':'🍝','Tacos':'🌮','Salad':'🥗','Burgers':'🍔','Curry':'🍛','Ramen':'🍜','Steak':'🥩','Soup':'🍲'};
+function loadPreset(key) {
+  document.getElementById('foods').value = presets[key].join('\n');
+}
+function spinFood() {
+  const raw = document.getElementById('foods').value;
+  const foods = raw.split('\n').map(f => f.trim()).filter(f => f.length > 0);
+  if (foods.length === 0) { alert('Please add some food options first!'); return; }
+  const picked = foods[Math.floor(Math.random() * foods.length)];
+  document.getElementById('result-food').textContent = picked;
+  document.getElementById('result-emoji').textContent = emojis[picked] || '🍽️';
+  document.getElementById('result').style.display = 'block';
+}
+</script>
+</body>
+</html>
