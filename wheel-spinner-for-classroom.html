@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://www.wheelspinner.info/wheel-spinner-for-classroom.html" />
+  <title>Wheel Spinner for Classroom — Free Student Picker for Teachers</title>
+  <meta name="description" content="Free wheel spinner for classroom use. Pick random students, assign tasks, and make lessons more engaging. Perfect for teachers at all levels.">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:system-ui,sans-serif;background:#f8f8f6;color:#1a1a1a;min-height:100vh}
+    header{background:#fff;border-bottom:1px solid #e0e0d8;padding:14px 24px;display:flex;align-items:center;gap:12px}
+    header h1{font-size:20px;font-weight:500}
+    header a{color:#888;text-decoration:none;font-size:14px;margin-left:auto}
+    header a:hover{color:#1a1a1a}
+    .container{max-width:800px;margin:0 auto;padding:2rem 1rem}
+    .hero{text-align:center;margin-bottom:2.5rem}
+    .hero h2{font-size:28px;font-weight:600;margin-bottom:8px}
+    .hero p{font-size:15px;color:#888;line-height:1.6}
+    .card{background:#fff;border-radius:12px;padding:2rem;margin-bottom:2rem;border:1px solid #e0e0d8}
+    label{font-size:14px;color:#666;display:block;margin-bottom:8px}
+    textarea{width:100%;padding:12px;background:#f8f8f6;border:1px solid #e0e0d8;border-radius:8px;color:#1a1a1a;font-size:15px;margin-bottom:1rem;resize:vertical;min-height:150px;font-family:system-ui,sans-serif}
+    .btn-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+    button{padding:14px;background:#1a1a1a;border:none;border-radius:8px;color:#fff;font-size:15px;font-weight:500;cursor:pointer}
+    button:hover{background:#333}
+    .btn-secondary{background:#f8f8f6;color:#1a1a1a;border:1px solid #e0e0d8}
+    .btn-secondary:hover{background:#e0e0d8}
+    .result-box{background:#f8f8f6;border-radius:8px;padding:1.5rem;margin-top:1rem;display:none;text-align:center;border:1px solid #e0e0d8}
+    .result-name{font-size:2rem;font-weight:700;color:#1a1a1a;margin:0.5rem 0}
+    .result-note{font-size:13px;color:#888}
+    .picked-list{margin-top:1rem;font-size:13px;color:#888}
+    .picked-list span{display:inline-block;background:#e0e0d8;padding:3px 10px;border-radius:20px;margin:3px}
+    .seo-section{max-width:800px;margin:2rem auto;padding:0 1rem;color:#555;line-height:1.7}
+    .seo-section h2{font-size:1.4rem;margin-bottom:1rem;color:#1a1a1a}
+    .seo-section h3{font-size:1.1rem;margin:1.5rem 0 0.5rem;color:#1a1a1a}
+    .seo-section p{margin-bottom:1rem}
+    .seo-section ul{padding-left:1.2rem;margin-bottom:1rem}
+    .seo-section li{margin-bottom:0.5rem}
+    footer{text-align:center;padding:2rem;font-size:12px;color:#bbb;border-top:1px solid #e0e0d8;margin-top:2rem}
+    footer a{color:#1a1a1a;text-decoration:none}
+  </style>
+</head>
+<body>
+<header>
+  <h1>🌀 WheelSpinner</h1>
+  <a href="/">← Back to Wheel Spinner</a>
+</header>
+<div class="container">
+  <div class="hero">
+    <h2>Wheel Spinner for Classroom</h2>
+    <p>Pick random students fairly and instantly. Add your class list and spin!</p>
+  </div>
+  <div class="card">
+    <label for="students">Enter student names — one per line</label>
+    <textarea id="students" placeholder="Emma&#10;Liam&#10;Olivia&#10;Noah&#10;Ava&#10;William&#10;Sophia&#10;James"></textarea>
+    <div class="btn-row">
+      <button onclick="pickStudent()">🎯 Pick a Student</button>
+      <button class="btn-secondary" onclick="resetPicked()">Reset</button>
+    </div>
+    <div class="result-box" id="result">
+      <div class="result-note">⭐ Selected student</div>
+      <div class="result-name" id="picked-name"></div>
+      <div class="result-note" id="remaining-note"></div>
+    </div>
+    <div class="picked-list" id="picked-list"></div>
+  </div>
+</div>
+
+<section class="seo-section">
+  <h2>Why Use a Wheel Spinner in the Classroom?</h2>
+  <p>A classroom wheel spinner removes the awkwardness of teacher-selected students and the unfairness of always calling on volunteers. When students know the selection is random, participation anxiety decreases — everyone is equally likely to be chosen, so there's no point in hiding. It also keeps the whole class alert and engaged, since anyone might be next.</p>
+
+  <h2>How to Use the Classroom Wheel Spinner</h2>
+  <ul>
+    <li><strong>Add your class list</strong> — type or paste student names, one per line.</li>
+    <li><strong>Click "Pick a Student"</strong> — the tool randomly selects one name.</li>
+    <li><strong>Already-picked students</strong> are tracked so you don't repeat — until you reset.</li>
+    <li><strong>Reset</strong> when you want to start a fresh round.</li>
+  </ul>
+
+  <h2>Classroom Uses for the Wheel Spinner</h2>
+  <h3>📚 Question & Answer Sessions</h3>
+  <p>Instead of calling on the same hands every time, spin the wheel to select who answers. Students stay focused because they know they might be chosen at any moment.</p>
+  <h3>📖 Reading Aloud</h3>
+  <p>Use the spinner to decide who reads the next paragraph. It keeps the class attentive and makes reading sessions more dynamic.</p>
+  <h3>🎨 Assigning Roles & Tasks</h3>
+  <p>Group leader, timekeeper, presenter — spin to assign classroom roles fairly and without complaints about favoritism.</p>
+  <h3>🎮 Educational Games</h3>
+  <p>Quiz games, review sessions, spelling bees — the spinner adds a game-show element that makes any activity more exciting.</p>
+  <h3>🌍 Language Classes</h3>
+  <p>Especially useful in language learning classrooms where you need to call on students quickly for oral practice. The randomness keeps everyone prepared.</p>
+
+  <h2>Tips for Teachers</h2>
+  <ul>
+    <li><strong>Display it on the projector</strong> — show the class the full name list so they can see the process is fair.</li>
+    <li><strong>Use it consistently</strong> — students quickly learn that the spinner is how participation works, which reduces anxiety over time.</li>
+    <li><strong>Combine with wait time</strong> — after spinning, give the student 10–15 seconds to think before answering. This improves response quality and reduces panic.</li>
+    <li><strong>Use the reset function</strong> — track who has been picked so every student participates before anyone is repeated.</li>
+  </ul>
+
+  <h2>Frequently Asked Questions</h2>
+  <h3>Is the classroom wheel spinner free?</h3>
+  <p>Yes, completely free. No account, no login, no subscription — just add your class list and spin.</p>
+  <h3>Can I save my class list?</h3>
+  <p>Your list stays on the page as long as you keep the tab open. For a saved list, bookmark the page after entering your names — they'll stay in the text box when you return.</p>
+  <h3>Does it work on a projector or smartboard?</h3>
+  <p>Yes — the tool is fully responsive and works on any screen size. Open it on your classroom computer and display it on your projector or smartboard for maximum engagement.</p>
+  <h3>Can I use it for online classes?</h3>
+  <p>Absolutely. Share your screen during a video call and spin the wheel live — students can see the selection happening in real time, which keeps remote classes as fair and engaging as in-person ones.</p>
+</section>
+
+<footer>
+  © 2026 WheelSpinner.info — <a href="/">Wheel Spinner</a> · <a href="/random-name-picker.html">Random Name Picker</a> · <a href="/yes-or-no-wheel.html">Yes or No Wheel</a> · <a href="/privacy.html">Privacy Policy</a>
+</footer>
+
+<script>
+let picked = [];
+function pickStudent() {
+  const raw = document.getElementById('students').value;
+  const all = raw.split('\n').map(n => n.trim()).filter(n => n.length > 0);
+  const remaining = all.filter(n => !picked.includes(n));
+  if (remaining.length === 0) {
+    alert('All students have been picked! Click Reset to start again.');
+    return;
+  }
+  const chosen = remaining[Math.floor(Math.random() * remaining.length)];
+  picked.push(chosen);
+  document.getElementById('picked-name').textContent = chosen;
+  document.getElementById('remaining-note').textContent = `${remaining.length - 1} students remaining`;
+  document.getElementById('result').style.display = 'block';
+  const listEl = document.getElementById('picked-list');
+  if (picked.length > 0) {
+    listEl.innerHTML = 'Already picked: ' + picked.map(n => `<span>${n}</span>`).join('');
+  }
+}
+function resetPicked() {
+  picked = [];
+  document.getElementById('result').style.display = 'none';
+  document.getElementById('picked-list').innerHTML = '';
+}
+</script>
+</body>
+</html>
