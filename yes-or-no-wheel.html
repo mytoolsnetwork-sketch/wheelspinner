@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://www.wheelspinner.info/yes-or-no-wheel.html" />
+  <title>Yes or No Wheel — Free Random Yes/No Decision Maker</title>
+  <meta name="description" content="Can't decide? Spin the yes or no wheel for an instant random answer. Free online yes/no decision maker — let fate decide!">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:system-ui,sans-serif;background:#f8f8f6;color:#1a1a1a;min-height:100vh}
+    header{background:#fff;border-bottom:1px solid #e0e0d8;padding:14px 24px;display:flex;align-items:center;gap:12px}
+    header h1{font-size:20px;font-weight:500}
+    header a{color:#888;text-decoration:none;font-size:14px;margin-left:auto}
+    header a:hover{color:#1a1a1a}
+    .container{max-width:800px;margin:0 auto;padding:2rem 1rem}
+    .hero{text-align:center;margin-bottom:2.5rem}
+    .hero h2{font-size:28px;font-weight:600;margin-bottom:8px}
+    .hero p{font-size:15px;color:#888;line-height:1.6}
+    .card{background:#fff;border-radius:12px;padding:2rem;margin-bottom:2rem;border:1px solid #e0e0d8;text-align:center}
+    .wheel-display{width:200px;height:200px;border-radius:50%;margin:0 auto 2rem;display:flex;align-items:center;justify-content:center;font-size:3rem;font-weight:700;color:#fff;transition:all 0.5s;background:#e0e0d8}
+    .wheel-yes{background:linear-gradient(135deg,#2ecc71,#27ae60)}
+    .wheel-no{background:linear-gradient(135deg,#e74c3c,#c0392b)}
+    .wheel-maybe{background:linear-gradient(135deg,#f39c12,#e67e22)}
+    button{width:100%;padding:14px;background:#1a1a1a;border:none;border-radius:8px;color:#fff;font-size:16px;font-weight:500;cursor:pointer;margin-bottom:1rem}
+    button:hover{background:#333}
+    .options{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem}
+    .opt-btn{padding:10px;background:#f8f8f6;border:2px solid #e0e0d8;border-radius:8px;color:#1a1a1a;cursor:pointer;font-size:14px;transition:all 0.2s}
+    .opt-btn:hover,.opt-btn.active{border-color:#1a1a1a;background:#1a1a1a;color:#fff}
+    .result-text{font-size:1.1rem;color:#888;margin-top:1rem;min-height:1.5rem}
+    .seo-section{max-width:800px;margin:2rem auto;padding:0 1rem;color:#555;line-height:1.7}
+    .seo-section h2{font-size:1.4rem;margin-bottom:1rem;color:#1a1a1a}
+    .seo-section h3{font-size:1.1rem;margin:1.5rem 0 0.5rem;color:#1a1a1a}
+    .seo-section p{margin-bottom:1rem}
+    .seo-section ul{padding-left:1.2rem;margin-bottom:1rem}
+    .seo-section li{margin-bottom:0.5rem}
+    footer{text-align:center;padding:2rem;font-size:12px;color:#bbb;border-top:1px solid #e0e0d8;margin-top:2rem}
+    footer a{color:#1a1a1a;text-decoration:none}
+  </style>
+</head>
+<body>
+<header>
+  <h1>🌀 WheelSpinner</h1>
+  <a href="/">← Back to Wheel Spinner</a>
+</header>
+<div class="container">
+  <div class="hero">
+    <h2>Yes or No Wheel</h2>
+    <p>Can't decide? Let the wheel make the call. Spin for an instant Yes or No answer.</p>
+  </div>
+  <div class="card">
+    <label style="font-size:14px;color:#666;display:block;margin-bottom:1rem">Choose your mode</label>
+    <div class="options">
+      <button class="opt-btn active" onclick="setMode('yesno', this)">Yes / No</button>
+      <button class="opt-btn" onclick="setMode('maybe', this)">Yes / No / Maybe</button>
+      <button class="opt-btn" onclick="setMode('weighted', this)">Mostly Yes</button>
+    </div>
+    <div class="wheel-display" id="wheel">🎯</div>
+    <button onclick="spin()">Spin the Wheel!</button>
+    <div class="result-text" id="result-text"></div>
+  </div>
+</div>
+
+<section class="seo-section">
+  <h2>What Is a Yes or No Wheel?</h2>
+  <p>A yes or no wheel is a free online decision-making tool that randomly returns either "Yes" or "No" when you spin it. It's the digital equivalent of flipping a coin — except more fun, more visual, and available in multiple modes including "Yes / No / Maybe" for those truly undecided moments.</p>
+
+  <h2>When to Use the Yes or No Wheel</h2>
+  <ul>
+    <li><strong>Small everyday decisions</strong> — should I order pizza tonight? Should I take that nap?</li>
+    <li><strong>Breaking a tie</strong> — when two people can't agree, let the wheel be the tiebreaker.</li>
+    <li><strong>Overcoming decision fatigue</strong> — sometimes you just need something external to push you in a direction.</li>
+    <li><strong>Games & dares</strong> — spin to decide if a player gets a dare or a pass.</li>
+    <li><strong>Teaching probability</strong> — a great classroom tool for demonstrating randomness and probability.</li>
+  </ul>
+
+  <h2>Yes / No / Maybe Mode</h2>
+  <p>Not all decisions are binary. The "Yes / No / Maybe" mode adds a third option for situations where you're genuinely uncertain and open to either outcome. It's perfect for low-stakes decisions where any result is acceptable.</p>
+
+  <h2>The Psychology of Coin Flips & Random Decisions</h2>
+  <p>There's a famous trick for making decisions: flip a coin, and pay attention to how you feel when it lands. If you feel relief, that's your answer. If you feel disappointment, that's also your answer. The yes or no wheel works the same way — sometimes your reaction to the result tells you more than the result itself.</p>
+
+  <h2>Frequently Asked Questions</h2>
+  <h3>Is the yes or no wheel truly random?</h3>
+  <p>Yes — each spin uses a random number generator that gives exactly equal probability to Yes and No (and Maybe if you choose that mode). There's no pattern or bias.</p>
+  <h3>Can I use it for important decisions?</h3>
+  <p>The yes or no wheel is best for low-stakes decisions. For major life choices, use it as a starting point — notice how you feel about the result — but ultimately rely on careful thought and advice from people you trust.</p>
+  <h3>What's the difference between Yes/No and Mostly Yes mode?</h3>
+  <p>"Mostly Yes" gives a higher probability to Yes — useful when you're already leaning toward yes but want a gentle nudge. Standard Yes/No is a true 50/50 split.</p>
+  <h3>Is it free?</h3>
+  <p>Completely free. No sign-up, no subscription — just spin.</p>
+</section>
+
+<footer>
+  © 2026 WheelSpinner.info — <a href="/">Wheel Spinner</a> · <a href="/random-name-picker.html">Random Name Picker</a> · <a href="/privacy.html">Privacy Policy</a>
+</footer>
+
+<script>
+let mode = 'yesno';
+function setMode(m, btn) {
+  mode = m;
+  document.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('wheel').textContent = '🎯';
+  document.getElementById('wheel').className = 'wheel-display';
+  document.getElementById('result-text').textContent = '';
+}
+function spin() {
+  const wheel = document.getElementById('wheel');
+  const resultText = document.getElementById('result-text');
+  wheel.textContent = '🌀';
+  wheel.className = 'wheel-display';
+  setTimeout(() => {
+    let result, cls, note;
+    if (mode === 'yesno') {
+      result = Math.random() < 0.5 ? 'YES' : 'NO';
+      cls = result === 'YES' ? 'wheel-yes' : 'wheel-no';
+      note = result === 'YES' ? 'Go for it!' : 'Maybe next time.';
+    } else if (mode === 'maybe') {
+      const r = Math.random();
+      if (r < 0.33) { result = 'YES'; cls = 'wheel-yes'; note = 'Go for it!'; }
+      else if (r < 0.66) { result = 'NO'; cls = 'wheel-no'; note = 'Maybe next time.'; }
+      else { result = 'MAYBE'; cls = 'wheel-maybe'; note = 'Up to you!'; }
+    } else {
+      result = Math.random() < 0.75 ? 'YES' : 'NO';
+      cls = result === 'YES' ? 'wheel-yes' : 'wheel-no';
+      note = result === 'YES' ? 'Looks like yes!' : 'Not this time.';
+    }
+    wheel.textContent = result;
+    wheel.className = `wheel-display ${cls}`;
+    resultText.textContent = note;
+  }, 600);
+}
+</script>
+</body>
+</html>
